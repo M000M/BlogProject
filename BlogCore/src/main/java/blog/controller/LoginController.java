@@ -33,32 +33,36 @@ public class LoginController {
     @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
     public String login(@RequestParam(name = "username")String username, @RequestParam(name = "password")String password,
                         Model model, HttpServletRequest request) {
-        User user = userService.getPwdByUsername(username);
-        String pwd = user.getPassword();
-        String password1 = MD5Utils.md5Code(password).toUpperCase();
-        String password2 = MD5Utils.md5Code(password1).toUpperCase();
-        if (pwd.equals(password2)) {
-            model.addAttribute("user", user);
-            request.getSession().setAttribute("user", user);
-            return "users/index";
-        } else {
+        try {
+            User user = userService.getPwdByUsername(username);
+            String pwd = user.getPassword();
+            String password1 = MD5Utils.md5Code(password).toUpperCase();
+            String password2 = MD5Utils.md5Code(password1).toUpperCase();
+            if (pwd.equals(password2)) {
+                model.addAttribute("user", user);
+                request.getSession().setAttribute("user", user);
+                return "redirect:/index";
+            } else {
+                return "users/failed";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
             return "users/failed";
         }
     }
 
-    @RequestMapping(value = {"/signon"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/signup"}, method = RequestMethod.GET)
     public String signOnIndex() {
-        return "users/signon";
+        return "users/signup";
     }
 
-    @RequestMapping(value = {"/signon"}, method = RequestMethod.POST)
-    public String signOn(@RequestParam(name = "username")String username, @RequestParam(name = "password")String password) {
-        if (username == null || password == null) {
+    @RequestMapping(value = {"/signup"}, method = RequestMethod.POST)
+    public String signUp(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password) {
+        if (username == null || username.length() == 0 || password == null || password.length() == 0) {
             return "users/adduser_failed";
         }
-        boolean res = false;
         try {
-            res = userService.addUser(username, password);
+            boolean res = userService.addUser(username, password);
             if (res) {
                 return "users/adduser_success";
             } else {

@@ -34,7 +34,7 @@
                     <button onclick="login()" type="submit" class="btn btn-default btn-block btn-primary">LOGIN</button>
                 </div>
                 <div class="col-sm-2">
-                    <button onclick="signon()" type="submit" class="btn btn-default btn-block btn-info">SIGN ON</button>
+                    <button onclick="signup()" type="submit" class="btn btn-default btn-block btn-info">SIGN UP</button>
                 </div>
             </div>
         </form>
@@ -51,9 +51,9 @@
         form.submit();
     }
 
-    function signon() {
+    function signup() {
         var form = document.forms[0];
-        form.action = "/signon";
+        form.action = "/signup";
         form.method = "get";
         form.submit();
     }
