@@ -1,7 +1,7 @@
 package blog.controller;
 
 import blog.entity.User;
-import blog.service.IndexService;
+import blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,14 +11,14 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/management")
-public class IndexController {
+public class ManagementController {
 
     @Autowired
-    private IndexService indexService;
+    private UserService userService;
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index() {
-        List<User> users = indexService.getUserList();
+        List<User> users = userService.getUserList();
         return "management/index";
     }
 }

@@ -10,5 +10,7 @@ public interface UserMapper {
 
     List<User> getUserList();
 
-    String getPwdByUsername(String username);
+    User getUserByUsername(String username);
+
+    int addUser(User user);
 }

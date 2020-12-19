@@ -7,14 +7,18 @@
         select * from blog.users;
     </select>
 
-    <select id="getPwdByUsername" resultMap="user">
+    <select id="getUserByUsername" resultMap="user">
         select * from blog.users where `username`=#{username}
     </select>
+
+    <insert id="addUser" parameterType="blog.entity.User">
+        insert into blog.users(`username`, `password`, `create_time`) value(#{username}, #{password}, #{createTime})
+    </insert>
 
     <resultMap type="blog.entity.User" id="user">
         <id property="id" column="id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
-        <result property="create_time" column="createTime"/>
+        <result property="createTime" column="create_time"/>
     </resultMap>
 </mapper>
