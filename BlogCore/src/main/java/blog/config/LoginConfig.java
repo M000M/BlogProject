@@ -21,7 +21,9 @@ public class LoginConfig implements WebMvcConfigurer {
                 "/index",                    //index页面路径
                 "/**/*.html",                //html静态资源
                 "/**/*.js",                  //js静态资源
-                "/**/*.css"                  //css静态资源
+                "/**/*.css",                 //css静态资源
+                "/**/*.jpg",                 //jpg静态资源
+                "/**/*.jpeg"                 //jpeg静态资源
         );
     }
 }
