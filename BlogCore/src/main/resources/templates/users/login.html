@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.css" th:href="@{/bootstrap/css/bootstrap.css}">
+<head th:replace="common/header :: head(~{::title})">
+    <title>LOGIN</title>
 </head>
 <body>
+    <nav th:replace="common/header :: menu(6)"></nav>
+
     <div class="container-fluid">
         <br><br><br>
         <div class="row">
@@ -14,7 +14,7 @@
             </div>
         </div>
         <br><br><br>
-        <form class="form-horizontal" method="post">
+        <form class="form-horizontal" name="login_form">
             <div class="form-group">
                 <label for="username" class="col-sm-4 control-label">Username</label>
                 <div class="col-sm-4">
@@ -45,14 +45,14 @@
 
 <script>
     function login() {
-        var form = document.forms[0];
+        var form = document.forms['login_form'];
         form.action = "/login";
         form.method = "post";
         form.submit();
     }
 
     function signup() {
-        var form = document.forms[0];
+        var form = document.forms['login_form'];
         form.action = "/signup";
         form.method = "get";
         form.submit();

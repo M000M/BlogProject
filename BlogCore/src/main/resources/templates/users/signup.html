@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="common/header :: head(~{::title})">
     <title>SIGN UP</title>
-    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.css" th:href="@{/bootstrap/css/bootstrap.css}">
 </head>
 <body>
+    <nav th:replace="common/header :: menu(0)"></nav>
     <div class="container-fluid">
         <br><br><br><br><br>
         <div class="row">

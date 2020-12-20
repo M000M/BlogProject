@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.css" th:href="@{/bootstrap/css/bootstrap.css}">
+<head th:replace="common/header :: head(~{::title})">
+    <title>Fail</title>
 </head>
 <body>
+    <nav th:replace="common/header :: menu(0)"></nav>
+
     <div class="container-fluid">
         <br><br><br><br><br><br><br><br>
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3"><h1 class="text-center"> Sorry, There is Something Wrong. </h1></div>
         </div>
         <br><br><br><br><br>
-        <form class="form-horizontal">
+        <form class="form-horizontal" name="form">
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-4">
                     <button onclick="retry()" type="submit" class="btn btn-default btn-block btn-info">RETRY</button>
@@ -29,14 +29,14 @@
 
 <script>
     function retry() {
-        var form = document.forms[0];
+        var form = document.forms['form'];
         form.action = "/signup";
         form.method = "get";
         form.submit();
     }
 
     function login() {
-        var form = document.forms[0];
+        var form = document.forms['form'];
         form.action = "/login";
         form.method = "get";
         form.submit();

@@ -34,6 +34,9 @@ public class LoginController {
     public String login(@RequestParam(name = "username")String username, @RequestParam(name = "password")String password,
                         Model model, HttpServletRequest request) {
         try {
+            if (username == null || username.length() == 0 || password == null || password.length() == 0) {
+                return "users/failed";
+            }
             User user = userService.getPwdByUsername(username);
             String pwd = user.getPassword();
             String password1 = MD5Utils.md5Code(password).toUpperCase();
@@ -49,6 +52,12 @@ public class LoginController {
             e.printStackTrace();
             return "users/failed";
         }
+    }
+
+    @RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
+    public String logOut(HttpServletRequest request) {
+        request.getSession().setAttribute("user", null);
+        return "redirect:/index";
     }
 
     @RequestMapping(value = {"/signup"}, method = RequestMethod.GET)
