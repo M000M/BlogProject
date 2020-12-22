@@ -49,7 +49,7 @@ public class LoginController {
                 return "users/failed";
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return "users/failed";
         }
     }
